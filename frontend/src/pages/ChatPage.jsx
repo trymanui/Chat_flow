@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChatPage = () => {
   return (
-    <div>
+    <div className='text-white z-10'>
       ChatPage
     </div>
   )
