@@ -51,12 +51,12 @@ try {
       return res.status(404).json({ message: "Receiver not found." });
     }
 
-let imageUrl;
-
-if(image){
-  const upload=cloudinary.uploader.upload(image);
-  imageUrl=uploadResponse.secure_url;
-}
+ let imageUrl;
+    if (image) {
+      // upload base64 image to cloudinary
+      const uploadResponse = await cloudinary.uploader.upload(image);
+      imageUrl = uploadResponse.secure_url;
+    }
 
 const newMessage=new Message({
   senderId,
