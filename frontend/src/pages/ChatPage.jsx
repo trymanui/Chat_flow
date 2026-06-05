@@ -25,13 +25,18 @@ const ChatPage = () => {
           bg-slate-800/50
           backdrop-blur-sm
           h-full
+          min-h-0
         `}
       >
         <ProfileHeader />
         <ActiveTabSwitch />
 
-        <div className="flex-1 overflow-y-auto p-4 space-y-2">
-          {activeTab === "chats" ? <ChatList /> : <ContactList />}
+        <div className="flex-1 overflow-y-auto p-4 space-y-2 min-h-0">
+          {activeTab === "chats" ? (
+            <ChatList />
+          ) : (
+            <ContactList />
+          )}
         </div>
       </div>
 
@@ -45,11 +50,10 @@ const ChatPage = () => {
           }
           flex-col
           flex-1
+          h-full
+          min-h-0
           bg-slate-900/50
           backdrop-blur-sm
-          h-full
-          transition-all
-          duration-300
         `}
       >
         {selectedUser ? (
@@ -62,22 +66,32 @@ const ChatPage = () => {
   );
 
   return (
-    <div className="relative w-full h-screen md:h-[800px] text-white max-w-6xl           bg-slate-900/50
-">
-      
-      {/* Desktop */}
-      <div className="hidden md:block h-full">
+    <>
+      {/* Desktop - unchanged */}
+      <div className="hidden md:block relative w-full max-w-6xl h-[800px] text-white">
         <BorderAnimatedContainer>
           {content}
         </BorderAnimatedContainer>
       </div>
 
       {/* Mobile */}
-      <div className="flex md:hidden h-full">
-        {content}
+      <div
+        className="
+          md:hidden
+          fixed
+          inset-0
+          w-screen
+          h-dvh
+          overflow-hidden
+          text-white
+          bg-slate-900
+        "
+      >
+        <div className="flex h-full w-full">
+          {content}
+        </div>
       </div>
-
-    </div>
+    </>
   );
 };
 
